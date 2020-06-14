@@ -55,11 +55,7 @@ class DebugLogger::Requires
   end
 
   def space_signification
-    space? ? "\n\n" : nil
-  end
-
-  def space?
-    !!space = space
+    space ? "\n\n" : nil
   end
 
   def colors

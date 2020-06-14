@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://rubygems.org/gems/debug_logger'
   s.license     = 'MIT'
   s.metadata    = { 'source_code_uri' => 'https://github.com/antonintouron/debug_logger' }
+  s.add_development_dependency 'rspec', '~> 3.7'
 end

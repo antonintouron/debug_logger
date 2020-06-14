@@ -1,8 +1,7 @@
-require 'rake/testtask'
+require 'rspec/core/rake_task'
+require 'bundler/gem_tasks'
 
-Rake::TestTask.new do |t|
-  t.libs << 'test'
-end
+# Default directory to look in is `/spec`
 
-desc "Run tests"
-task :default => :test
+RSpec::Core::RakeTask.new(:spec)
+task :default => :spec

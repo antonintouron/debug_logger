@@ -5,6 +5,13 @@ This very simple gem was created to simplify your life in creating your log in y
 
 Warning, use this gem only for your development, do not use it for production.
 
+## Installation
+
+* `gem install debug_logger`
+* `gem 'debug_logger', '~> 0.0.5.5'` for Gemfile
+
+=> https://rubygems.org/gems/debug_logger/
+
 ## Usage
 
 ```diff

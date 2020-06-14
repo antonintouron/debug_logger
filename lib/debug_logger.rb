@@ -1,52 +1,26 @@
 class DebugLogger
-  def self.log(color, text, variables = nil)
-    requires = Requires.new(color)
+  def self.log(color, text, variables = nil, space = nil)
+    requires = Requires.new(color, space)
     if variables
-      puts "\e[#{requires.color_signification}m #{text}====================>#{variables}====================\e[0m"
+      puts "#{requires.space_signification} \e[#{requires.color_signification}m #{text}====================>#{variables}====================\e[0m #{requires.space_signification}"
     else
-      puts "\e[#{requires.color_signification}m #{text}\e[0m"
-    end
-  end
-
-  def self.log_space(color, text, variables = nil)
-    requires = Requires.new(color)
-    if variables
-      puts "
-        \n
-        \e[#{requires.color_signification}m #{text}====================>#{variables}====================\e[0m
-        \n
-      "
-    else
-      puts "
-        \n
-        \e[#{requires.color_signification}m #{text}\e[0m
-        \n
-      "
+      puts "#{requires.space_signification} \e[#{requires.color_signification}m #{text}\e[0m #{requires.space_signification}"
     end
   end
 
   def self.color_lists
     requires = Requires.new
-    puts requires.colors.join(' / ')
-  end
-
-  def self.commands
-    puts "
-      * DebugLogger::log(your_color, your_text, your_variable) \n
-      * @your_color = Symbol | color of your log (DebugLogger::color_lists for list all colors) => require \n
-      * @your_text = String | text of your log => require \n
-      * @your_variable = All | variables to debug => optionnal \n
-      * DebugLogger::log_space(your_color, your_text, your_variable) => log with space before and after \n
-    "
+    puts requires.colors.join(' - ')
   end
 end
 
 class DebugLogger::Requires
 
-  attr_reader :color
+  attr_reader :color, :space
 
-  def initialize(color = nil)
+  def initialize(color = nil, space = nil)
     @color = color
+    @space = space
   end
 
   def color_signification
@@ -78,6 +52,14 @@ class DebugLogger::Requires
     else
       38
     end
+  end
+
+  def space_signification
+    space? ? "\n\n" : nil
+  end
+
+  def space?
+    !!space = space
   end
 
   def colors

@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '0.0.3'
   s.date        = '2020-06-13'
   s.summary     = 'DebugLogger !'
-  s.description = 'A simple gem to help debug with log. DebugLogger::commands to see the documentation.'
+  s.description = 'A simple gem to help debug.'
   s.authors     = ['Antonin Touron']
   s.email       = 'antonintouron@gmail.com'
   s.files       = ["lib/debug_logger.rb"]

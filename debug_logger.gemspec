@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'debug_logger'
-  s.version     = '0.0.4.1'
+  s.version     = '0.0.5'
   s.date        = '2020-06-13'
   s.summary     = 'DebugLogger !'
   s.description = 'A simple gem to help debug.'

@@ -8,10 +8,11 @@ Warning, use this gem only for your development, do not use it for production.
 ## Usage
 
 ```diff
-DebugLogger::log(color, text, variables, space)
+DebugLogger::log(color, text, variables, storage, space)
 # @color = Symbol (require) => Color of your log
 # @text = String (require) => Text of your log
 # @variables = String, Hash, Array, Text... (Optional) => Dynamic params of your log
+# @storage = Boolean (Optional) => Storage of your log
 # @space = Boolean (Optional) => With/without space before and after log
 
 # To see all color :
@@ -23,8 +24,18 @@ DebugLogger::color_lists
 
 ```diff
 name = 'toto'
-DebugLogger::log(:green, 'Debug Logger', name)
+DebugLogger::log(:green, 'Debug Logger', name, true)
 + Debug Logger====================>toto====================
+
+DebugLogger::log(:green, 'Debug Logger 2', name, true)
++ Debug Logger 2====================>toto====================
+
+DebugLogger::DataStore::logs
++ Debug Logger====================>toto====================
++ Debug Logger 2====================>toto====================
+
+To reset the storage of your logs :
+DebugLogger::DataStore::reset_logs
 ```
 
 ## Contact

@@ -1,11 +1,14 @@
 class DebugLogger
-  def self.log(color, text, variables = nil, space = nil)
+  def self.log(color, text, variables = nil, storage = nil, space = nil)
     requires = Requires.new(color, space)
     if variables
-      puts "#{requires.space_signification} \e[#{requires.color_signification}m #{text}====================>#{variables}====================\e[0m #{requires.space_signification}"
+      log_text = "#{requires.space_signification} \e[#{requires.color_signification}m #{text}====================>#{variables}====================\e[0m #{requires.space_signification}"
     else
-      puts "#{requires.space_signification} \e[#{requires.color_signification}m #{text}\e[0m #{requires.space_signification}"
+      log_text = "#{requires.space_signification} \e[#{requires.color_signification}m #{text}\e[0m #{requires.space_signification}"
     end
+
+    DebugLogger::DataStore.new(log_text).save_log if storage
+    puts log_text
   end
 
   def self.color_lists
@@ -60,5 +63,31 @@ class DebugLogger::Requires
 
   def colors
     [:black, :red, :green, :orange, :blue, :pink, :cyan, :white, :normal, :bold, :italic, :underline]
+  end
+end
+
+class DebugLogger::DataStore
+
+  attr_accessor :log
+
+  def initialize(log)
+    @log = log
+  end
+
+  def self.logs
+    File.open('data_store/data.txt', 'r') do |f|
+      f.each_line do |line|
+        puts line
+      end
+    end
+  end
+
+  def self.reset_logs
+    File.open('data_store/data.txt', 'w') { |file| file.truncate(0) }
+  end
+
+  def save_log
+    File.write('data_store/data.txt', log, mode: 'a')
+    File.write('data_store/data.txt', "\n", mode: 'a')
   end
 end

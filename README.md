@@ -8,41 +8,52 @@ Warning, use this gem only for your development, do not use it for production.
 ## Installation
 
 * `gem install debug_logger`
-* `gem 'debug_logger', '~> 0.0.5.5'` for Gemfile
+* `gem 'debug_logger', '~> 0.1'` for Gemfile
 
 => https://rubygems.org/gems/debug_logger/
 
 ## Usage
 
 ```diff
-DebugLogger::log(color, text, variables, storage, space)
-# @color = Symbol (require) => Color of your log
+debug_logger = DebugLogger.new(color, storage)
+# @color = Symbol (Optional) => Color of your log
+# @storage = Boolean (Optional) => Save your log
+
+debug_logger.log(text, color, variables, storage)
 # @text = String (require) => Text of your log
+# @color = Symbol (Optional) => Color of your log, this param is priority to the colors chosen during instantiation
 # @variables = String, Hash, Array, Text... (Optional) => Dynamic params of your log
-# @storage = Boolean (Optional) => Storage of your log
-# @space = Boolean (Optional) => With/without space before and after log
+# @storage = Boolean (Optional) => Save your log, this param is not priority to the storage chosen during instantiation
 
 # To see all color :
 
-DebugLogger::color_lists
+debug_logger.color_lists
 ```
 
 #### Example
 
 ```diff
+debug_logger = DebugLogger.new(:green, true)
+debug_logger.log('Debug Logger')
++ Debug Logger========================================
+
 name = 'toto'
-DebugLogger::log(:green, 'Debug Logger', name, true)
-+ Debug Logger====================>toto====================
-
-DebugLogger::log(:green, 'Debug Logger 2', name, true)
+debug_logger.log('Debug Logger 2', nil, name)
 + Debug Logger 2====================>toto====================
 
-DebugLogger::DataStore::logs
-+ Debug Logger====================>toto====================
+See all logs saving :
+debug_logger.logs(date)
+# @date = Bollean (Optional) => Date of your log
+
+debug_logger.logs
+Initialize DebugLogger logage
++ Debug Logger========================================
 + Debug Logger 2====================>toto====================
 
-To reset the storage of your logs :
-DebugLogger::DataStore::reset_logs
+debug_logger.logs(true)
+Initialize DebugLogger logage
++ Debug Logger======================================== | AT 2020-06-20 21:37:18
++ Debug Logger 2====================>toto==================== | AT 2020-06-20 21:37:22
 ```
 
 ## Contact

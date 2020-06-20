@@ -1,13 +1,5 @@
-class DebugLogger::Requires
-
-  attr_reader :color, :space
-
-  def initialize(color = nil, space = nil)
-    @color = color
-    @space = space
-  end
-
-  def color_signification
+class DebugLogger::DebugLoggerUtils
+  def self.color_signification(color)
     case color
     when :black
       30
@@ -38,11 +30,7 @@ class DebugLogger::Requires
     end
   end
 
-  def space_signification
-    space ? "\n\n" : nil
-  end
-
-  def colors
+  def self.colors
     [:black, :red, :green, :orange, :blue, :pink, :cyan, :white, :normal, :bold, :italic, :underline]
   end
 end

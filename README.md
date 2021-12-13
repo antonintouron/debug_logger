@@ -8,7 +8,7 @@ Warning, use this gem only for your development, do not use it for production.
 ## Installation
 
 * `gem install debug_logger`
-* `gem 'debug_logger', '~> 0.2'` for Gemfile
+* `gem 'debug_logger', '~> 0.2.1'` for Gemfile
 
 => https://rubygems.org/gems/debug_logger/
 

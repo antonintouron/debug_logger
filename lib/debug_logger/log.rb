@@ -16,7 +16,15 @@ class DebugLogger::Log
   end
 
   def data_storing(date = nil)
-    storing.each { |data| date ? puts "#{data[:log_message]} | at #{data[:date]}" : puts data[:log_message] }
+    storing.each do |data|
+      if date
+        puts "#{data[:log_message]} | AT #{data[:date]}"
+      elsif
+        puts data[:log_message]
+      end
+    end
+
+    nil
   end
 
   private

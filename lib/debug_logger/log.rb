@@ -1,6 +1,6 @@
 require 'date'
 
-class DebugLogger::Logage
+class DebugLogger::Log
 
   attr_accessor :storing
 
@@ -16,15 +16,7 @@ class DebugLogger::Logage
   end
 
   def data_storing(date = nil)
-    storing.each do |data|
-      if date
-        puts "#{data[:log_message]} | AT #{data[:date]}"
-      elsif
-        puts data[:log_message]
-      end
-    end
-
-    nil
+    storing.each { |data| date ? puts "#{data[:log_message]} | at #{data[:date]}" : puts data[:log_message] }
   end
 
   private
@@ -32,7 +24,7 @@ class DebugLogger::Logage
   def initialize_storing
     [
       {
-        log_message: 'Initialize DebugLogger logage',
+        log_message: 'Initialize DebugLogger log',
         date: DateTime.now.strftime('%F %T')
       }
     ]
